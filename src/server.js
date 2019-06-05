@@ -1,6 +1,7 @@
 const express = require("express");
 const nunjucks = require("nunjucks");
 const mongoose = require("mongoose");
+const methodOverride = require("method-override");
 
 class App {
   constructor() {
@@ -20,6 +21,7 @@ class App {
   middlewares() {
     this.express.use(express.json());
     this.express.use(express.urlencoded({ extended: false }));
+    this.express.use(methodOverride("_method"));
     nunjucks.configure("src/views", {
       autoescape: true,
       express: this.express,

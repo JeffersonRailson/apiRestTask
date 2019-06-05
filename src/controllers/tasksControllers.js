@@ -14,7 +14,7 @@ class TaskControllers {
     const task = await Tasks.findByIdAndUpdate(req.params.id, req.body, {
       new: true
     });
-    return res.json(task);
+    res.redirect("/add");
   }
   async delete(req, res) {
     await Tasks.findByIdAndDelete(req.params.id);

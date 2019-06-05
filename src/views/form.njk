@@ -14,18 +14,19 @@
 </div>
 
 
+<div class="container-fluid row">
 
 {%for tarefa in task %}
 {%if tarefa.done %}
 
-<div class="container-fluid row">
 
-  <div class="card" style="width: 18rem;">
-  <form class="p-6" align="center" action="./api/tasks" method = "POST">
+  <div class="card col-md-4" style="width: 18rem;">
+  <form class="p-6" align="center" action="./api/tasks/{{tarefa._id}}?_method=PUT" method = "POST">
     <div class="card-body">
       <h5 class="card-title text-success">{{tarefa.tarefa}}</h5>
-      <h6 class="text-danger"></h6>
-      <button type="submit" class="btn btn-primary">Enviar</button>
+      <h6 class="text-text-success">Status: Completa</h6>
+      <button type="submit" class="btn btn-primary" name="done" value={{false}}>Desfazer</button>
+      </div>
   </form>
     
   </div>
@@ -34,20 +35,21 @@
 
 {%if tarefa.done ==false%}
 
-  <div class="card" style="width: 18rem;">
-  <form class="p-6" align="center" action="./api/tasks" method = "POST">
+  <div class="card col-md-6" style="width: 18rem;">
+  <form class="p-6" align="center" action="./api/tasks/{{tarefa._id}}?_method=PUT" method = "POST">
     <div class="card-body">
       <h5 class="card-title text-danger">{{tarefa.tarefa}}</h5>
-      <h6 class="text-danger"></h6>
-      <button type="submit" class="btn btn-primary">Enviar</button>
+      <h6 class="text-danger">Status: Incompleta</h6>
+      <button type="submit" class="btn btn-danger" name="done" value={{true}}>Completar</button>
+      </div>
   </form>
   </div>
 
   {%endif%}
 
 
-</div>
 {%endfor%}
+</div>
 
 
 
